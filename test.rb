@@ -1,4 +1,5 @@
 
+
 def test(title, &b)
   begin
     if b
@@ -34,6 +35,12 @@ end
 # These files should be placed within a lib directory and required on the top of
 # any script that utilizes them (including this test script). Once required
 # all the tests within this suite should pass.
+
+require_relative "lib/song"
+require_relative "lib/genre"
+require_relative 'lib/artist.rb'
+
+
 
 # Artist Specs
 test 'Can initialize an Artist' do
