@@ -1,9 +1,13 @@
 
-
 def test(title, &b)
   begin
     if b
-      b.call
+      result = b.call
+      if result
+        puts "pass: #{title}"
+      else
+        puts "fail: #{title}"
+      end
     else
       puts "pending: #{title}"
     end
@@ -14,18 +18,14 @@ def test(title, &b)
 end
 
 def assert(statement)
-  if statement
-    puts "pass"
-  else
-    puts "fail"
-  end
+  !!statement
 end
 
 def assert_equal(actual, expected)
   if expected == actual
-    puts 'pass'
+    true
   else
-    puts "fail: expected #{expected}, got #{actual}"
+    false
   end
 end
 
@@ -36,8 +36,8 @@ end
 # any script that utilizes them (including this test script). Once required
 # all the tests within this suite should pass.
 
-require_relative "lib/song"
-require_relative "lib/genre"
+require_relative "lib/song.rb"
+require_relative "lib/genre.rb"
 require_relative 'lib/artist.rb'
 
 
@@ -106,6 +106,7 @@ test 'artists have genres' do
   artist.add_song(song)
 
   assert artist.genres.include?(song.genre)
+ 
 end
 
 # Genre Specs
