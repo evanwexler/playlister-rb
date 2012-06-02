@@ -6,6 +6,7 @@ class Artist
 	def initialize (str=nil)
 		@name = str
 		@songs = []
+		@genres =[]
 		@@artists <<(self)
 	end 
 
@@ -35,6 +36,11 @@ class Artist
 		@songs <<(song)
 		
 	end	
+
+# interate songs through genres
+	def genres
+		@songs.collect {|g| g.genre}
+	end
 
 end
 
